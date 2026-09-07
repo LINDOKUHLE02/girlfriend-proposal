@@ -1,0 +1,6 @@
+import { motion } from "framer-motion";
+
+export default function MemoryTimeline() {
+  const moments = [["Then...", "We started talking."], ["Somewhere along the way...", "I started looking forward to hearing from you."], ["And before I realised it...", "You had become one of my favourite parts of the day."]];
+  return <section className="section-shell bg-[#141114]"><div className="section-inner"><p className="eyebrow">02 / In between</p><div className="mt-16 border-t border-[var(--line)]">{moments.map(([lead, text], index) => <motion.div key={lead} initial={{ opacity: 0, x: index % 2 ? 25 : -25 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: .7 }} className="grid gap-4 border-b border-[var(--line)] py-10 md:grid-cols-[.8fr_1.2fr] md:items-center md:py-14"><span className="sans text-xs uppercase tracking-[.25em] text-[#d88b91]">0{index + 1}</span><div><p className="body-copy mb-2 italic text-[#b6a8aa]">{lead}</p><h3 className="display text-4xl font-medium text-[#f1e8e5] md:text-6xl">{text}</h3></div></motion.div>)}</div></div></section>;
+}

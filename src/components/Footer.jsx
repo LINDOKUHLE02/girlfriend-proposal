@@ -1,0 +1,1 @@
+export default function Footer() { return <footer className="border-t border-[var(--line)] bg-[#0b0a0c] px-6 py-12 text-center"><p className="display text-2xl text-[#f1e8e5]">Our story, still being written<span className="text-[#d88b91]">.</span></p><p className="sans mt-3 text-[10px] uppercase tracking-[.25em] text-[#74676a]">Made with intention</p></footer>; }

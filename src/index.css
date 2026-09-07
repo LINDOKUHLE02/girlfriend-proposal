@@ -1,0 +1,25 @@
+:root {
+  --ink: #0b0a0c;
+  --ink-soft: #141114;
+  --paper: #f1e8e5;
+  --muted: #b6a8aa;
+  --rose: #d88b91;
+  --rose-deep: #8e394b;
+  --line: rgba(241, 232, 229, 0.16);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: var(--paper);
+  background: var(--ink);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--ink);
+}
+
+#root {
+  min-height: 100vh;
+}
