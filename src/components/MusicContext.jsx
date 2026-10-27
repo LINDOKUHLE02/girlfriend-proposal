@@ -59,6 +59,8 @@ export function MusicProvider({ children }) {
   const [currentTrack, setCurrentTrack] = useState("background");
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  const [loadingTrackId, setLoadingTrackId] = useState(null);
+  const [audioError, setAudioError] = useState(null);
 
   const updatePlaying = (playing) => {
     isPlayingRef.current = playing;
@@ -135,6 +137,9 @@ export function MusicProvider({ children }) {
     const audio = audioRef.current;
     if (!audio || !selected || trackId === "background") return;
 
+    setLoadingTrackId(trackId);
+    setAudioError(null);
+
     operation.current = operation.current.then(async () => {
       transitioningRef.current = true;
       if (currentTrackRef.current === "background") backgroundPosition.current = audio.currentTime;
@@ -148,15 +153,20 @@ export function MusicProvider({ children }) {
       setCurrentTrack(trackId);
       hasStartedRef.current = true;
       setHasStarted(true);
+      setLoadingTrackId(null);
       await audio.play();
       updatePlaying(true);
       await fade(audio, MUSIC_VOLUME, 800);
       transitioningRef.current = false;
-    }).catch(() => {
+    }).catch((err) => {
       transitioningRef.current = false;
+      setLoadingTrackId(null);
+      setAudioError(err?.message || `Unable to load track`);
       updatePlaying(false);
     });
   };
+
+  const dismissError = () => setAudioError(null);
 
   const togglePlayback = () => {
     const audio = audioRef.current;
@@ -184,16 +194,21 @@ export function MusicProvider({ children }) {
     tracks: MUSIC,
     currentTrack,
     currentTitle: MUSIC[currentTrack].title,
+    currentArtist: MUSIC[currentTrack].artist,
     isPlaying,
     hasStarted,
+    loadingTrackId,
+    audioError,
+    dismissError,
     startBackground,
     playDedication,
     togglePlayback,
-  }), [currentTrack, hasStarted, isPlaying]);
+  }), [currentTrack, hasStarted, isPlaying, loadingTrackId, audioError]);
 
   return <MusicContext.Provider value={value}>{children}</MusicContext.Provider>;
 }
 
+// eslint-disable-next-line react-hooks/only-export-components
 export function useMusic() {
   const context = useContext(MusicContext);
   if (!context) throw new Error("useMusic must be used inside MusicProvider");

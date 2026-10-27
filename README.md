@@ -1,16 +1,46 @@
-# React + Vite
+# A Little Something For You
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A personal romantic journey told through photographs, music, and memories — culminating in a proposal.
 
-Currently, two official plugins are available:
+## Tech
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 with hooks & context
+- Vite build pipeline
+- Tailwind CSS with custom design tokens
+- Framer Motion for animations
+- Oxlint for code quality
 
-## React Compiler
+## Development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev
+```
 
-## Expanding the Oxlint configuration
+Build for production:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```bash
+npm run build
+```
+
+## Structure
+
+```
+src/
+├── components/
+│   ├── MusicContext.jsx    # Audio playback with fade, loading & error states
+│   ├── MusicControl.jsx    # Fixed playback control bar
+│   ├── Hero.jsx            # Opening screen with start trigger
+│   ├── HowWeMet.jsx        # Chapter 01 — The beginning
+│   ├── MemoryTimeline.jsx  # Chapter 02 — In between
+│   ├── LittleThings.jsx    # Chapter 03 — The details
+│   ├── Gallery.jsx         # Chapter 04 — Our memories (with lightbox)
+│   ├── DedicationSongs.jsx # Chapter 05 — Our soundtrack (3 dedications)
+│   ├── WhereWeAreNow.jsx   # Interstitial — Right now
+│   ├── WhereWereGoing.jsx  # Chapter 06 — Next
+│   ├── Proposal.jsx        # Chapter 07 — The proposal (yes / needs time)
+│   ├── ProposalSuccess.jsx # Celebration screen
+│   ├── FloatingHearts.jsx  # Confetti overlay (respects reduced-motion)
+│   └── Footer.jsx
+└── App.jsx
+```
